@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package irrgarten;
 
 /**
@@ -9,5 +6,12 @@ package irrgarten;
  * @author leonin04
  */
 public class Weapon {
+    private float power;
+    private int uses;
+    
+    public Weapon (float power, int uses) {
+        this.power = power;
+        this.uses = uses;
+    }
     
 }
