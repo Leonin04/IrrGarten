@@ -13,14 +13,32 @@ module Irrgarten
 		@@MAX_ATTACK = 3 #Potencia máxima de armas
 		@@MAX_SHIELD = 2	#Protección máxima de escudos
 			
-			@generator = Random.new
+		@@generator = Random.new
 		
-		def initialize () #float, int
-			
+		def random_pos ( max ) #int
+			@generator.rand(0...max) # ... excluido .. incluido
+		 
 		end
 		
-		def to_s ()
-			"D" 
+		def who_starts ( nplayers ) #int
+			@generator.rand(0...nplayers)
+		
 		end
+		
+		def random_intelligence()
+			@generator.rand(0...@MAX_INTELLIGENCE)
+		end
+		
+		def random_strength()
+			@generator.rand(0...@MAX_STRENGHT)
+		end
+		
+		def resurrect_player()
+			if (@generador.rand < 0.3)
+				return true
+			else
+				return false
+		end
+		
 	end	
 end

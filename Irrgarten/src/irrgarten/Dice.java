@@ -11,8 +11,8 @@ public class Dice {
     private static final int WEAPONS_REWARD = 2; //Número máximo de armas recibidas al ganar un combate
     private static final int SHIELDS_REWARD = 3; //Número máximo de escudos recibidos al ganar un combate
     private static final int HEALTH_REWARD = 5; //Saludo máxima recibida al ganar un combate
-    private static final int MAX_ATTACK = 3; //Potencia máxima de armas
-    private static final int MAX_SHIELD = 2; //Protección máxima de escudos
+    private static final float MAX_ATTACK = 3.0f; //Potencia máxima de armas
+    private static final float MAX_SHIELD = 2.0f; //Protección máxima de escudos
     
     private static final Random generator = new Random();
     
