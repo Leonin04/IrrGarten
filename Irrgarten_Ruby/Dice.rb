@@ -10,8 +10,8 @@ module Irrgarten
 		@@WEAPONS_REWARD = 2 #Número máximo de escudos recibidos al ganar un combate
 		@@SHIELDS_REWARD = 3 #Número máximo de escudos recibidos al ganar un combate
 		@@HEALTH_REWARD = 5 #Saludo máxima recibida al ganar un combate
-		@@MAX_ATTACK = 3 #Potencia máxima de armas
-		@@MAX_SHIELD = 2	#Protección máxima de escudos
+		@@MAX_ATTACK = 3.0 #Potencia máxima de armas
+		@@MAX_SHIELD = 2.0	#Protección máxima de escudos
 			
 		@@generator = Random.new
 		
@@ -20,18 +20,22 @@ module Irrgarten
 		 
 		end
 		
+		
 		def who_starts ( nplayers ) #int
 			@generator.rand(0...nplayers)
 		
 		end
 		
+		
 		def random_intelligence()
 			@generator.rand(0...@MAX_INTELLIGENCE)
 		end
 		
+		
 		def random_strength()
 			@generator.rand(0...@MAX_STRENGHT)
 		end
+		
 		
 		def resurrect_player()
 			if (@generador.rand < 0.3)
@@ -40,5 +44,50 @@ module Irrgarten
 				return false
 		end
 		
+		
+		def weapons_reward()
+			@generator.rand(0..@WEAPONS_REWARD)
+		end
+		
+		
+		def shields_reward()
+			@generator.rand(0..@SHIELDS_REWARD)
+		end
+		
+		
+		def health_reward()
+			@generator.rand(0..@HEALTH_REWARD)
+		end
+		
+		
+		def weapon_power()
+			@generator.rand(0...@MAX_ATTACK)
+		end
+		
+		
+		def shield_power()
+			@generator.rand(0...@MAX_SHIELD)
+		end
+		
+		
+		def uses_left()
+			@generator.rand(0..@MAX_USES)
+		end
+		
+		
+		def intensity( competence )
+			@generator.rand(0...competence)
+		end
+		
+		
+		def discard_element( uses_left )
+			descartado = false
+			probabilidad = 1.0 -  (uses_left.to_f/@MAX_USES.to_f)
+			if @generator.rand(0.0..1.0) < probabilidad
+			    descartado = true
+			end
+			
+			return descartado
+		end
 	end	
 end
