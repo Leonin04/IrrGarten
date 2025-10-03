@@ -18,6 +18,10 @@ public class Shield{
         }
         return salida;
     }
+
+    public boolean discard () {
+      return dice.discardElement(this.uses);
+    }
     
     @Override
     public String toString () { 
