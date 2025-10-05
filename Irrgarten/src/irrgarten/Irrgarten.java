@@ -36,6 +36,7 @@ public class Irrgarten {
         System.out.println("¿Resucita? " + dado.resurrectPlayer());
         System.out.println("Armas conseguidas: " + dado.weaponsReward());
         System.out.println("Escudos conseguidos: " + dado.shieldsReward());
+        System.out.println("Salud conseguida: " + dado.healthReward());
         System.out.println("Poder arma: " + dado.weaponPower());
         System.out.println("Poder escudo: " + dado.shieldPower());
         int usos = dado.usesLeft();

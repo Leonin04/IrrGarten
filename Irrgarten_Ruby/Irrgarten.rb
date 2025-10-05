@@ -45,6 +45,24 @@ module Irrgarten
 			end
 		end
 		
+		def self.prueba_dice
+			puts "\n"
+			puts "Posición: #{Dice.random_pos(10)}"
+			puts "Empieza jugador: #{Dice.who_starts(3)}"
+			puts "Inteligencia: #{Dice.random_intelligence}"
+			puts "Fuerza: #{Dice.random_strength}"
+			puts "¿Resucita? #{Dice.resurrect_player}"
+			puts "Armas conseguidas: #{Dice.weapons_reward}"
+			puts "Escudos conseguidos: #{Dice.shields_reward}"
+			puts "Salud conseguida: #{Dice.health_reward}"
+			puts "Poder arma: #{Dice.weapon_power}"
+			puts "Poder escudo: #{Dice.shield_power}"
+			usos = Dice.uses_left
+			puts "Usos restantes: #{usos}"
+			puts "Intensidad: #{Dice.intensity(3.0)}"
+			puts "¿Se descarta? #{Dice.discard_element(usos)}"
+		end
+		
 	end
 
 	#Irrgarten.prueba_weapon
@@ -53,3 +71,4 @@ end
 
 Irrgarten::Irrgarten.prueba_weapon
 Irrgarten::Irrgarten.prueba_shield
+Irrgarten::Irrgarten.prueba_dice

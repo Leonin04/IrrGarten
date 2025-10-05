@@ -21,7 +21,7 @@ module Irrgarten
 		end
 		
 		
-		def who_starts ( nplayers ) #int
+		def self.who_starts ( nplayers ) #int
 			@@generator.rand(0...nplayers)
 		
 		end
@@ -33,15 +33,16 @@ module Irrgarten
 		
 		
 		def self.random_strength()
-			@@generator.rand(0...@@MAX_STRENGHT)
+			@@generator.rand(0...@@MAX_STRENGTH)
 		end
 		
 		
 		def self.resurrect_player()
-			if (@@generador.rand < 0.3)
+			if (@@generator.rand < 0.3)
 				return true
 			else
 				return false
+			end
 		end
 		
 		
@@ -75,7 +76,7 @@ module Irrgarten
 		end
 		
 		
-		def selfintensity( competence )
+		def self.intensity( competence )
 			@@generator.rand(0...competence)
 		end
 		
