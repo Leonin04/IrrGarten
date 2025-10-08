@@ -1,7 +1,5 @@
 #encoding:utf-8
 
-require_relative 'Dice'
-
 module Irrgarten 
 	class Shield
 		

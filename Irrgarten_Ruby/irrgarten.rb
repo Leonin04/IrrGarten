@@ -1,8 +1,8 @@
 #encoding:utf-8
 
-require_relative 'Weapon'
-require_relative 'Shield'
-require_relative 'Dice'
+require_relative 'weapon'
+require_relative 'shield'
+require_relative 'dice'
 
 module Directions
 	LEFT = :left

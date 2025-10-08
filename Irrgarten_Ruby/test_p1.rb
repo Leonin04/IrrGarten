@@ -1,10 +1,10 @@
 #encoding:utf-8
 
-require_relative 'Weapon'
-require_relative 'Shield'
-require_relative 'Dice'
-require_relative 'GameState'
-require_relative 'Irrgarten'
+require_relative 'weapon'
+require_relative 'shield'
+require_relative 'dice'
+require_relative 'game_state'
+require_relative 'irrgarten'
 
 module Irrgarten 
 	class TestP1

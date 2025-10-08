@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package irrgarten;
 
 /**
@@ -44,24 +41,23 @@ public class TestP1 {
     }
     
     static void pruebaDice(){
-        Dice dado = new Dice();
         
         for (int i=0; i<100; i++){
             System.out.println("\nPrueba " + (i+1));
-            System.out.println("Posición: " + dado.randomPos(10));
-            System.out.println("Empieza jugador " + dado.whoStarts(3));
-            System.out.println("Inteligencia " + dado.randomIntelligence());
-            System.out.println("Fuerza " + dado.randomStrength());
-            System.out.println("¿Resucita? " + dado.resurrectPlayer());
-            System.out.println("Armas conseguidas: " + dado.weaponsReward());
-            System.out.println("Escudos conseguidos: " + dado.shieldsReward());
-            System.out.println("Salud conseguida: " + dado.healthReward());
-            System.out.println("Poder arma: " + dado.weaponPower());
-            System.out.println("Poder escudo: " + dado.shieldPower());
-            int usos = dado.usesLeft();
+            System.out.println("Posición: " + Dice.randomPos(10));
+            System.out.println("Empieza jugador " + Dice.whoStarts(3));
+            System.out.println("Inteligencia " + Dice.randomIntelligence());
+            System.out.println("Fuerza " + Dice.randomStrength());
+            System.out.println("¿Resucita? " + Dice.resurrectPlayer());
+            System.out.println("Armas conseguidas: " + Dice.weaponsReward());
+            System.out.println("Escudos conseguidos: " + Dice.shieldsReward());
+            System.out.println("Salud conseguida: " + Dice.healthReward());
+            System.out.println("Poder arma: " + Dice.weaponPower());
+            System.out.println("Poder escudo: " + Dice.shieldPower());
+            int usos = Dice.usesLeft();
             System.out.println("Usos restantes: " + usos);
-            System.out.println("Intensidad: " + dado.intensity(3.0f));
-            System.out.println("¿Se descarta? " + dado.discardElement(usos));
+            System.out.println("Intensidad: " + Dice.intensity(3.0f));
+            System.out.println("¿Se descarta? " + Dice.discardElement(usos));
         }
     }
     

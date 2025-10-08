@@ -16,25 +16,25 @@ public class Dice {
     
     private static final Random generator = new Random();
     
-    public int randomPos (int max){
+    public static int randomPos (int max){
         
         return generator.nextInt(max);
     }
     
-    public int whoStarts (int nplayers){
+    public static int whoStarts (int nplayers){
         
         return generator.nextInt(nplayers);
     }
     
-    public float randomIntelligence(){
+    public static float randomIntelligence(){
         return generator.nextFloat(MAX_INTELLIGENCE);
     }
     
-    public float randomStrength(){
+    public static float randomStrength(){
         return generator.nextFloat(MAX_STRENGTH);
     }
     
-    public boolean resurrectPlayer(){
+    public static boolean resurrectPlayer(){
         boolean resucita = false;
         if (generator.nextFloat(1.0f) < 0.3) {
             resucita = true;
@@ -42,35 +42,35 @@ public class Dice {
         return resucita;
     }
     
-    public int weaponsReward() {
+    public static int weaponsReward() {
         return generator.nextInt(WEAPONS_REWARD+1);
     }
     
-    public int shieldsReward(){
+    public static int shieldsReward(){
         return generator.nextInt(SHIELDS_REWARD+1);
     }
     
-    public int healthReward(){
+    public static int healthReward(){
         return generator.nextInt(HEALTH_REWARD+1);
     }
     
-    public float weaponPower(){
+    public static float weaponPower(){
         return generator.nextFloat(MAX_ATTACK);
     }
     
-    public float shieldPower(){
+    public static float shieldPower(){
         return generator.nextFloat(MAX_SHIELD);
     }
     
-    public int usesLeft(){
+    public static int usesLeft(){
         return generator.nextInt(MAX_USES+1);
     }
     
-    public float intensity(float competence){
+    public static float intensity(float competence){
         return generator.nextFloat(competence);
     }
     
-    public boolean discardElement(int usesLeft){
+    public static boolean discardElement(int usesLeft){
         boolean descartado = false;
         float probabilidad = 1.0f - ((float) usesLeft/(float) MAX_USES);
         if (generator.nextFloat(1.0f) < probabilidad){
