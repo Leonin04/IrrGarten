@@ -77,7 +77,7 @@ module Irrgarten
 		
 		
 		def self.intensity( competence )
-			@@generator.rand(0...competence)
+			@@generator.rand(0...competence.to_f)
 		end
 		
 		

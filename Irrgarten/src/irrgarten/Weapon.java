@@ -25,8 +25,7 @@ public class Weapon {
     }
 
     public boolean discard () {
-        Dice d = new Dice();
-        return d.discardElement(this.uses);
+        return Dice.discardElement(this.uses);
     }
     
     @Override
