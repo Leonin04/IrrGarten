@@ -1,6 +1,7 @@
 #encoding:utf-8
 
 require_relative 'Monster'
+require_relative 'Player'
 
 module Irrgarten
 	class TestP2
@@ -22,7 +23,21 @@ module Irrgarten
 			puts m.to_s
 			puts "¿Muerto? #{m.dead}"
 		end
+		
+		def self.prueba_player()
+			p = Player.new('1', 10,10)
+			puts p.to_s
+			puts "Colocando en 0,0:"
+			p.set_pos(0,0)
+			puts "Colocado en: (#{p.row},#{p.col})"
+			puts "¿Muerto? #{p.dead}"
+			puts "Atacando: #{p.attack}"
+			#puts "Defendiendo #{p.defend}"
+		end
 	end
 end
 
+puts "Probando Monster"
 Irrgarten::TestP2.prueba_monster
+puts "\n Probando Player"
+Irrgarten::TestP2.prueba_player
