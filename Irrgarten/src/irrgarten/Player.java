@@ -78,8 +78,8 @@ public class Player {
            this.intelligence=intelligence;
            this.strength=strength;
            this.name = "Player #"+number;
-           this.col=-1;
            this.row=-1;
+           this.col=-1;
            this.health=INITIAL_HEALTH;
            this.weapons = new ArrayList<>();
            this.shields = new ArrayList<>();
@@ -138,7 +138,7 @@ public class Player {
     @Override
     public String toString(){
         return ("Name: " + name + ", Number: " + number + ", Intelligence: " + intelligence + ", Strength: " + strength + 
-                ", Health: " + health + ", Position: (" + row + "," + col + ") , ConsecutiveHits: " + consecutiveHits + "Armas: \n" + weapons + "Escudos: \n" + shields);
+                ", Health: " + health + ", Position: (" + row + "," + col + ") , ConsecutiveHits: " + consecutiveHits + " \nArmas: \n" + weapons + "\nEscudos: \n" + shields);
     }
     
     

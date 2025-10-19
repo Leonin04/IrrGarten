@@ -26,8 +26,23 @@ public class TestP2 {
         System.out.println("¿Muerto? " + m.dead());
     }
     
+    static void pruebaPlayer(){
+        Player p = new Player('1',10,10);
+        System.out.println(p.toString());
+        System.out.println("Colocando en 0,0 ");
+        p.setPos(0,0);
+        System.out.println("Colocado en: (" + p.getRow() + "," + p.getCol() + ")");
+        System.out.println("¿Muerto? " + p.dead());
+        System.out.println("Atacando: " + p.attack());
+        //System.out.println("Defendiendo: " + p.defend(5));        
+    }
+    
     public static void main(String[] args) {
+       System.out.println("Probando monstruo: ");
        pruebaMonster();
+       
+       System.out.println("Probando player: ");
+       pruebaPlayer();
 
     }
     
