@@ -37,12 +37,27 @@ public class TestP2 {
         //System.out.println("Defendiendo: " + p.defend(5));        
     }
     
+    static void pruebaLabyrinth(){
+        Labyrinth l = new Labyrinth(10,10,1,1);
+        System.out.println("¿Hay ganador? " + l.haveAWinner());
+        System.out.println("Pintando laberinto: ");
+        System.out.println(l.toString());
+        Monster m = new Monster ("Ares",10,10);
+        System.out.println("Poniendo monstruo en (2,2)");
+        l.addMonster(2, 2, m);
+        System.out.println(l.toString());
+
+    }
+    
     public static void main(String[] args) {
        System.out.println("Probando monstruo: ");
        pruebaMonster();
        
        System.out.println("Probando player: ");
        pruebaPlayer();
+       
+       System.out.println("Probando labyrinth: ");
+       pruebaLabyrinth();
 
     }
     

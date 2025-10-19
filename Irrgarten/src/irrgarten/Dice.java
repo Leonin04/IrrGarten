@@ -17,8 +17,7 @@ public class Dice {
     private static final Random generator = new Random();
     
     public static int randomPos (int max){
-        
-        return generator.nextInt(max);
+        return generator.nextInt(max); //No incluye max
     }
     
     public static int whoStarts (int nplayers){
