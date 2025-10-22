@@ -2,6 +2,7 @@
 
 require_relative 'Monster'
 require_relative 'Player'
+require_relative 'Labyrinth'
 
 module Irrgarten
 	class TestP2
@@ -34,6 +35,17 @@ module Irrgarten
 			puts "Atacando: #{p.attack}"
 			#puts "Defendiendo #{p.defend}"
 		end
+		
+		def self.prueba_labyrinth()
+			l = Labyrinth.new(10,10,1,1)
+			puts "¿Hay ganador? #{l.have_a_winner}"
+			puts "Pintando laberinto:"
+			puts l.to_s
+			m = Monster.new("Ares",10,10)
+			puts "Poniendo monstruo en (2,2)"
+			l.add_monster(2,2,m)
+			puts l.to_s
+		end
 	end
 end
 
@@ -41,3 +53,5 @@ puts "Probando Monster"
 Irrgarten::TestP2.prueba_monster
 puts "\n Probando Player"
 Irrgarten::TestP2.prueba_player
+puts "\n Probando Labyrinth"
+Irrgarten::TestP2.prueba_labyrinth
