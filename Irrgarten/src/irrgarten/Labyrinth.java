@@ -145,9 +145,10 @@ public class Labyrinth {
     }
     
     public void addMonster(int row, int col, Monster monster){
-        assert posOK(row,col) && emptyPos(row,col);
-        monsters[row][col]=monster;
-        labyrinth[row][col]=Labyrinth.MONSTER_CHAR;
+        if (posOK(row,col) && emptyPos(row,col)){
+            monsters[row][col]=monster;
+            labyrinth[row][col]=Labyrinth.MONSTER_CHAR;
+        }
     }
     
     public Monster putPlayer(Directions direction, Player player){
