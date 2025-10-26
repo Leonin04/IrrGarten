@@ -30,7 +30,7 @@ public class Game {
     }
 
     private boolean nextStep(Directions PreferredDirection) {
-        throw new UnsupportedOperationException();
+        //P3
     }
 
     private GameState getGameState() {
