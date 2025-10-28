@@ -163,4 +163,12 @@ public class Labyrinth {
         throw new UnsupportedOperationException();
     }
     
+    public int getNRows(){
+        return nRows;
+    }
+    
+    public int getNCols(){
+        return nCols;
+    }
+    
 }

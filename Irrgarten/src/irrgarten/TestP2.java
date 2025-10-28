@@ -49,6 +49,12 @@ public class TestP2 {
 
     }
     
+    static void pruebaGame(){
+        Game g = new Game(2);
+        System.out.println("¿Hay ganador? " + g.finished());
+        
+    }
+    
     public static void main(String[] args) {
        System.out.println("Probando monstruo: ");
        pruebaMonster();
@@ -58,6 +64,9 @@ public class TestP2 {
        
        System.out.println("Probando labyrinth: ");
        pruebaLabyrinth();
+       
+       System.out.println("Probando Game:");
+       pruebaGame();
 
     }
     

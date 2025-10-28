@@ -9,83 +9,84 @@ public class Game {
     private ArrayList<Player> players;
     private ArrayList<Monster> monsters;
     private Labyrinth labyrinth;
-    private Playerl currentPlayer;
+    private Player currentPlayer;
 
-    public Game(int nplayers) {
-        this.players = new ArrayList<>();
-        for (int i = 0; i < nplayers; i++) {
-            this.players.add(new Player(i,Dice.randomIntelligence(), Dice.randomStrength()));
-        }
-        this.monsters = new ArrayList<>();
-        this.labyrinth = new Labyrinth();
-        this.currentPlayerIndex = Dice.whoStarts(nplayers);
-        this.log = "Game started with " + nplayers + " players.\n";
-        this.currentPlayer = this.players.get(this.currentPlayerIndex);
-        this.configureLabyrinth();
-        this.labyrinth.spreadPlayers(this.players);
+    private void configureLabyrinth() {
+        throw new UnsupportedOperationException(); //PREGUNTAR SI PODEMOS HACERLO
     }
 
-    private boolean finished() {
-        return this.labyrinth.haveAWinner();
-    }
-
-    private boolean nextStep(Directions PreferredDirection) {
-        //P3
-    }
-
-    private GameState getGameState() {
-        GameState state = new GameState(this.labyrinth.toString(), this.players.toString(), this.monsters.toString(), this.currentPlayerIndex, this.finished(), this.log);
-        return state;
-    }
-
-    void configureLabyrinth() {
-        //help 
-    }
-
-    void nextPlayer() {
+    private void nextPlayer() {
         this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.players.size();
         this.currentPlayer = this.players.get(this.currentPlayerIndex);
     }
 
-    void logPlayerWon() {
-        this.log += "Player " + this.currentPlayer.getName() + " has won the game!\n";
+    private void logPlayerWon() {
+        this.log += " Player " + this.currentPlayerIndex + " has won the game!\n";
     }
 
-    void logMonsterWon() {
-        this.log += "Monster has won against player " + this.currentPlayer.getName() + "!\n";
+    private void logMonsterWon() {
+        this.log += "Monster has won against player " + this.currentPlayerIndex + "!\n";
     }   
 
-    void logResurrected() {
-        this.log += "Player " + this.currentPlayer.getName() + " has resurrected!\n";
+    private void logResurrected() {
+        this.log += "Player " + this.currentPlayerIndex + " has resurrected!\n";
     }
 
-    void logPlayerSkipTurn(){
-        this.log += "Player " + this.currentPlayer.getName() + " skips this turn.\n";
+    private void logPlayerSkipTurn(){
+        this.log += "Player " + this.currentPlayerIndex + " skips this turn.\n";
     }
 
-    void logPlayerNoOrders(){
-        this.log += "Player " + this.currentPlayer.getName() + " has no orders to play.\n";
+    private void logPlayerNoOrders(){
+        this.log += "Player " + this.currentPlayerIndex + " has no orders to play.\n";
     }
 
-    void logNoMonster(){
-        this.log += "No monster present to attack player " + this.currentPlayer.getName() + ".\n";
+    private void logNoMonster(){
+        this.log += "No monster present to attack player " + this.currentPlayerIndex + ".\n";
     }
 
-    void logRounds(int rounds,int max) {
+    private void logRounds(int rounds,int max) {
         this.log += "Round " + rounds + " of " + max + " completed.\n";
     }
 
-    Directions actualDirection(Directions preferredDirection) {
-       //P3
+    private Directions actualDirection(Directions preferredDirection) {
+        throw new UnsupportedOperationException();
     }
 
-    GameCharacter combat(Monster monster)  {
-       //P3
+    private GameCharacter combat(Monster monster)  {
+        throw new UnsupportedOperationException();
     }
-    void manageReward(GameCharacter winner)     {
-       //P3
+    private void manageReward(GameCharacter winner)     {
+        throw new UnsupportedOperationException();
     }
-    void manageResurrection()       {
-       //P3
+    private void manageResurrection()       {
+        throw new UnsupportedOperationException();
+    }
+    
+    public Game(int nplayers) {
+        this.players = new ArrayList<>();
+        for (int i = 0; i < nplayers; i++) {
+            this.players.add(new Player((char) (i + '0'),Dice.randomIntelligence(), Dice.randomStrength()));
+        }
+        this.monsters = new ArrayList<>();
+        this.labyrinth = new Labyrinth(10,10, 4,5); //POR EJEMPLO
+        this.currentPlayerIndex = Dice.whoStarts(nplayers);
+        this.currentPlayer = this.players.get(this.currentPlayerIndex);
+        //this.labyrinth.spreadPlayers(this.players);
+        //this.configureLabyrinth();
+        this.log = "Game started with " + nplayers + " players.\n Labyrinth: " + this.labyrinth.toString() + "\n";
+
+    }
+
+    public boolean finished() {
+        return labyrinth.haveAWinner();
+    }
+
+    public boolean nextStep(Directions PreferredDirection) {
+        throw new UnsupportedOperationException();
+    }
+
+    public GameState getGameState() {
+        GameState state = new GameState(this.labyrinth.toString(), this.players.toString(), this.monsters.toString(), this.currentPlayerIndex, this.finished(), this.log);
+        return state;
     }
 }
