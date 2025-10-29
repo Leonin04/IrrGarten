@@ -49,17 +49,54 @@ public class Game {
     }
 
     private Directions actualDirection(Directions preferredDirection) {
-        throw new UnsupportedOperationException();
+        int currentRow = currentPlayer.getRow();
+        int currentCol = currentPlayer.getCol();
+        ArrayList<Directions> validMoves = labyrinth.validMoves(currentRow, currentCol);
+        return currentPlayer.move(preferredDirection, validMoves);
     }
 
     private GameCharacter combat(Monster monster)  {
-        throw new UnsupportedOperationException();
+        int rounds = 0;
+        GameCharacter winner = GameCharacter.PLAYER;
+        
+        float playerAttack = currentPlayer.attack();
+        boolean lose = monster.defend(playerAttack);
+        
+        while (!lose && rounds < MAX_ROUNDS){
+            rounds++;
+            winner = GameCharacter.MONSTER;
+            
+            float monsterAttack = monster.attack();
+            lose = currentPlayer.defend(monsterAttack);
+            
+            if (!lose){
+                playerAttack = currentPlayer.attack();
+                winner = GameCharacter.PLAYER;
+                lose = monster.defend(playerAttack);
+            }
+        }
+        
+        logRounds(rounds,MAX_ROUNDS);
+        
+        return winner;
     }
     private void manageReward(GameCharacter winner)     {
-        throw new UnsupportedOperationException();
+        if (winner == GameCharacter.PLAYER){
+            currentPlayer.receiveReward();
+            logPlayerWon();
+        } else{
+            logMonsterWon();
+        }
     }
     private void manageResurrection()       {
-        throw new UnsupportedOperationException();
+        boolean resurrect = Dice.resurrectPlayer();
+        
+        if (resurrect){
+            currentPlayer.resurrect();
+            logResurrected();
+        } else {
+            logPlayerSkipTurn();
+        }
     }
     
     public Game(int nplayers) {
@@ -81,8 +118,39 @@ public class Game {
         return labyrinth.haveAWinner();
     }
 
-    public boolean nextStep(Directions PreferredDirection) {
-        throw new UnsupportedOperationException();
+    public boolean nextStep(Directions preferredDirection) {
+        log = "";
+        boolean dead = currentPlayer.dead();
+        GameCharacter winner = null;
+        Directions direction = null;
+        boolean endGame = finished();
+        
+        if (!dead){
+            direction = actualDirection(preferredDirection);
+            
+            if (direction != preferredDirection){
+                logPlayerNoOrders();
+            }
+            
+            Monster monster = labyrinth.putPlayer(direction, currentPlayer);
+        
+            if (monster == null){
+                logNoMonster();
+            } else {
+                winner = combat(monster);
+                manageReward(winner);
+            }
+        } else {
+            manageResurrection();
+        }
+        
+        endGame = finished();
+        
+        if (!endGame){
+            nextPlayer();
+        }
+        
+        return endGame;
     }
 
     public GameState getGameState() {

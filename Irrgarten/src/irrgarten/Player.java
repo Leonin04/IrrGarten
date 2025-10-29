@@ -118,7 +118,7 @@ public class Player {
         }
     }
     
-    public Directions move ( Directions direction, Directions[] validMoves){ // se hace en P3
+    public Directions move ( Directions direction, ArrayList<Directions> validMoves){ // se hace en P3
         throw new UnsupportedOperationException();
     }
     
