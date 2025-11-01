@@ -21,12 +21,30 @@ public class Player {
     private ArrayList<Shield> shields;
     
     
-    private void receiveWeapon( Weapon w){ //P3
-        throw new UnsupportedOperationException();
+    private void receiveWeapon( Weapon w){ 
+        for(int i=0; i< weapons.size(); i++){
+            boolean discard=weapons.get(i).discard();
+            if (discard){
+                weapons.remove(i);
+            }
+        }
+        int size= weapons.size();
+        if (size< MAX_WEAPONS){ 
+            weapons.add(w);
+        }
     }
     
-    private void receiveShield(Shield s){ //P3
-        throw new UnsupportedOperationException();
+    private void receiveShield(Shield s){ 
+        for(int i=0; i< shields.size(); i++){
+            boolean discard=shield.get(i).discard();
+            if (discard){
+                shields.remove(i);
+            }
+        }
+        int size= shields.size();
+        if (size< MAX_SHIELDS){ 
+            shields.add(s);
+        }
     }
     
     private Weapon newWeapon(){
@@ -58,7 +76,22 @@ public class Player {
     }
     
     private boolean manageHit(float receivedAttack){
-        throw new UnsupportedOperationException();
+        float defense= defensiveEnergy();
+        boolean lose=false;
+        if(defense<receivedAttack){
+            gotWounded();
+            incConsecutiveHits();
+        } else {
+            resetHits();
+        }
+
+        if(consecutiveHits== || (dead())) {
+            resetHits();
+            lose=true;
+        } else {
+            lsse=false;
+        }
+        return lose;
     }
     
     private void resetHits(){
@@ -118,8 +151,14 @@ public class Player {
         }
     }
     
-    public Directions move ( Directions direction, ArrayList<Directions> validMoves){ // se hace en P3
-        throw new UnsupportedOperationException();
+    public Directions move ( Directions direction, ArrayList<Directions> validMoves){ 
+        int size= validMoves.size();
+        Directions dir=direction;
+        boolean contained=validMoves.contains(direction);    
+        if (!contained && size>0){
+            dir=validMoves.get(0);
+        }
+          return dir;
     }
     
     public float attack(){
@@ -130,8 +169,19 @@ public class Player {
         return manageHit(receivedAttack);
     }
     
-    public void receiveReward(){// P3
-        throw new UnsupportedOperationException();
+    public void receiveReward(){
+        int wReward= Dice.weaponReward();
+        int sReward= Dice.shieldReward();
+        for (int i=0; i< wReward; i++){
+            Weapon wnew= newWeapon();
+            this.receiveWeapon(wnew);
+        }
+        for (int i=0; i< sReward; i++){
+            Weapon snew= newShield();
+            this.receiveShield(snew);
+        }
+        int extraHealth= Dice.healthReward();
+        this.health += extraHealth;
 
     }
     
