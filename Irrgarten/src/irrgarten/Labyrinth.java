@@ -98,6 +98,7 @@ public class Labyrinth {
     
     private Monster putPlayer2D (int oldRow, int oldCol, int row, int col, Player player){
         Monster output=null;
+        
         if (canStepOn(row,col)){
             if(posOK(oldRow,oldCol)){
                 if(this.players[oldRow][oldCol]==player){
@@ -105,20 +106,26 @@ public class Labyrinth {
                     this.players[oldRow][oldCol]=null; 
                 }
             }
-        }
-        if(monsterPos(row,col)==true){
-            this.labyrinth[row][col]=Labyrinth.COMBAT_CHAR;
-            output=monsters[row][col];  
-        }
-        else{
-            char number=player.getNumber();
-            this.labyrinth[row][col]=number;
-        }
-        this.players[row][col]=player;
-        player.setPos(row, col);
+        
+            if(monsterPos(row,col)){
+                this.labyrinth[row][col]=Labyrinth.COMBAT_CHAR;
+                output=monsters[row][col];  
+            }
+            else{
+                char number=player.getNumber();
+                this.labyrinth[row][col]=number;
+            }
+            
+            this.players[row][col]=player;
+            player.setPos(row, col);
 
+        }
         return output;
 
+    }
+    
+    private void set(int row, int col, char block){ //NECESARIO?
+            this.labyrinth[row][col]=Labyrinth.BLOCK_CHAR; 
     }
     
     public Labyrinth (int nRows, int nCols, int exitRow, int exitCol){
@@ -177,11 +184,12 @@ public class Labyrinth {
         }
     }
     
-    public Monster putPlayer(Directions direction, Player player){
+    public Monster putPlayer(Directions direction, Player player){ //Que significa este error?
         int oldRow = player.getRow();
         int oldCol = player.getCol();
         int[] newPos = dir2Pos(oldRow, oldCol, direction);
         Monster monster = putPlayer2D(oldRow, oldCol, newPos[ROW], newPos[COL], player);
+        
         return monster;
     }
     
@@ -192,9 +200,11 @@ public class Labyrinth {
         } else {
             incCol=1;
         }
-        int col=incCol, row=incRow;
-        while(posOK(row,col) && (emptyPos(row,col))&& length>0){
-            this.labyrinth[row][col]=Labyrinth.BLOCK_CHAR; 
+        
+        int col=startCol, row=startRow;
+        
+        while(posOK(row,col) && emptyPos(row,col) && length>0){
+            set(row,col,BLOCK_CHAR);
             length--;
             row+=incRow;
             col+=incCol;

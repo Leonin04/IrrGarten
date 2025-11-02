@@ -24,10 +24,12 @@ public class Player {
     private void receiveWeapon( Weapon w){ 
         for(int i=0; i< weapons.size(); i++){
             boolean discard=weapons.get(i).discard();
+            
             if (discard){
                 weapons.remove(i);
             }
         }
+        
         int size= weapons.size();
         if (size< MAX_WEAPONS){ 
             weapons.add(w);
@@ -36,11 +38,13 @@ public class Player {
     
     private void receiveShield(Shield s){ 
         for(int i=0; i< shields.size(); i++){
-            boolean discard=shield.get(i).discard();
+            boolean discard=shields.get(i).discard();
+            
             if (discard){
                 shields.remove(i);
             }
         }
+        
         int size= shields.size();
         if (size< MAX_SHIELDS){ 
             shields.add(s);
@@ -78,18 +82,19 @@ public class Player {
     private boolean manageHit(float receivedAttack){
         float defense= defensiveEnergy();
         boolean lose=false;
+        
         if(defense<receivedAttack){
-            gotWounded();
+            getWounded();
             incConsecutiveHits();
         } else {
             resetHits();
         }
 
-        if(consecutiveHits== || (dead())) {
+        if(consecutiveHits==HITS2LOSE || (dead())) {
             resetHits();
             lose=true;
         } else {
-            lsse=false;
+            lose=false;
         }
         return lose;
     }
@@ -152,12 +157,16 @@ public class Player {
     }
     
     public Directions move ( Directions direction, ArrayList<Directions> validMoves){ 
-        int size= validMoves.size();
         Directions dir=direction;
-        boolean contained=validMoves.contains(direction);    
+        
+        int size= validMoves.size();
+       
+        boolean contained=validMoves.contains(direction); 
+        
         if (!contained && size>0){
             dir=validMoves.get(0);
         }
+        
           return dir;
     }
     
@@ -170,19 +179,19 @@ public class Player {
     }
     
     public void receiveReward(){
-        int wReward= Dice.weaponReward();
-        int sReward= Dice.shieldReward();
+        int wReward= Dice.weaponsReward();
+        int sReward= Dice.shieldsReward();
+        
         for (int i=0; i< wReward; i++){
             Weapon wnew= newWeapon();
             this.receiveWeapon(wnew);
         }
         for (int i=0; i< sReward; i++){
-            Weapon snew= newShield();
+            Shield snew= newShield();
             this.receiveShield(snew);
         }
         int extraHealth= Dice.healthReward();
         this.health += extraHealth;
-
     }
     
     @Override

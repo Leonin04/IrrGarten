@@ -50,8 +50,10 @@ public class TestP2 {
     }
     
     static void pruebaGame(){
-        Game g = new Game(2);
+        Game g = new Game(3);
         System.out.println("¿Hay ganador? " + g.finished());
+        GameState gm = g.getGameState();
+        System.out.println(gm.getLabyrinth());
         
     }
     

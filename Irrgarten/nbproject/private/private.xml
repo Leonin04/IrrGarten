@@ -4,12 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten/src/irrgarten/Irrgarten.java</file>
-            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten/src/irrgarten/Dice.java</file>
-            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten/src/irrgarten/GameState.java</file>
-            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten/src/irrgarten/TestP2.java</file>
             <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten/src/irrgarten/Player.java</file>
             <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten/src/irrgarten/Labyrinth.java</file>
             <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten/src/irrgarten/Game.java</file>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten/src/irrgarten/Monster.java</file>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten/src/irrgarten/TestP3.java</file>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten/src/irrgarten/TestP2.java</file>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten/src/irrgarten/GameState.java</file>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten/src/irrgarten/Controller/Controller.java</file>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten/src/irrgarten/UI/TextUI.java</file>
         </group>
     </open-files>
 </project-private>

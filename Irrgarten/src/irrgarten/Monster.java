@@ -35,7 +35,7 @@ public class Monster {
     }
     
     public boolean defend(float receivedAttack){
-        boolean isDead = false;
+        boolean isDead = dead();
         if(isDead == false){
             float defensiveEnergy = Dice.intensity(intelligence);
             if (defensiveEnergy < receivedAttack){

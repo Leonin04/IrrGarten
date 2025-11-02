@@ -12,7 +12,29 @@ public class Game {
     private Player currentPlayer;
 
     private void configureLabyrinth() {
-        throw new UnsupportedOperationException(); //PREGUNTAR SI PODEMOS HACERLO
+        int rows = 10;
+        int cols = 10;
+        int nMonsters = 3;
+        int exitRow = 2, exitCol = 9;
+        
+        this.labyrinth = new Labyrinth(rows,cols,exitRow,exitCol);
+        
+        labyrinth.addBlock(Orientation.VERTICAL,0,1,4);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 3,2, 3);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 0, 4, 6);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 1, 4, 6);
+        labyrinth.addBlock(Orientation.HORIZONTAL, 6, 0, 5);
+        labyrinth.addBlock(Orientation.VERTICAL,7,4,2);
+        labyrinth.addBlock(Orientation.VERTICAL, 3, 6, 6);
+        labyrinth.addBlock(Orientation.VERTICAL,2,8,7);
+        
+        for(int i=0; i<nMonsters;i++){
+            this.monsters.add(new Monster("monstruo" + i, Dice.randomIntelligence(), Dice.randomStrength()));
+        }
+        
+        labyrinth.addMonster(8,1, monsters.get(0));
+        labyrinth.addMonster(9,7,monsters.get(1));
+        labyrinth.addMonster(2,5,monsters.get(2));
     }
 
     private void nextPlayer() {
@@ -105,11 +127,10 @@ public class Game {
             this.players.add(new Player((char) (i + '0'),Dice.randomIntelligence(), Dice.randomStrength()));
         }
         this.monsters = new ArrayList<>();
-        this.labyrinth = new Labyrinth(10,10, 4,5); //POR EJEMPLO
         this.currentPlayerIndex = Dice.whoStarts(nplayers);
         this.currentPlayer = this.players.get(this.currentPlayerIndex);
-        //this.labyrinth.spreadPlayers(this.players);
-        //this.configureLabyrinth();
+        this.configureLabyrinth();
+        this.labyrinth.spreadPlayers(this.players);
         this.log = "Game started with " + nplayers + " players.\n Labyrinth: " + this.labyrinth.toString() + "\n";
 
     }
