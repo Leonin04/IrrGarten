@@ -1,5 +1,7 @@
 #encoding:utf-8
 
+require_relative 'Irrgarten'
+
 module Irrgarten 
     class Game
     
@@ -10,56 +12,101 @@ module Irrgarten
         private
 
         def configure_labyrinth
-        # P3
+        	rows = 10
+        	cols = 10
+        	n_monsters = 3
+        	exit_row = 2
+        	exit_col = 9
+        	
+        	@labyrinth = Labyrinth.new(rows,cols,exit_row,exit_col)
+        	@labyrinth.add_block(Orientation::VERTICAL,0,1,4);
+        	@labyrinth.add_block(Orientation::HORIZONTAL, 3,2, 3);
+        	@labyrinth.add_block(Orientation::HORIZONTAL, 0, 4, 6);
+        	@labyrinth.add_block(Orientation::HORIZONTAL, 1, 4, 6);
+        	@labyrinth.add_block(Orientation::HORIZONTAL, 6, 0, 5);
+        	@labyrinth.add_block(Orientation::VERTICAL,7,4,2);
+        	@labyrinth.add_block(Orientation::VERTICAL, 3, 6, 6);
+        	@labyrinth.add_block(Orientation::VERTICAL,2,8,7);
         end
 
         def next_player
-		@currentPlayerIndex = (@currentPlayerIndex + 1) % @players.size
-		@currentPlayer = @players[@currentPlayerIndex]
+		@current_player_index = (@current_player_index + 1) % @players.size
+		@current_player = @players[@current_player_index]
         end
 
         def log_player_won
-        	@log += "Player #{@currentPlayerIndex} has won the game!\n"
+        	@log += "Player #{@current_player_index} has won the battle!\n"
         end
 
         def log_monster_won
-        	@log += "Monster has won against player #{@currentPlayerIndex}!\n"
+        	@log += "Monster has won against player #{@current_player_index}!\n"
         end
 
         def log_resurrected
-        @log += "Player #{@currentPlayerIndex} has resurrected!\n"
+        	@log += "Player #{@current_player_index} has resurrected!\n"
         end
 
         def log_player_skip_turn
-        @log += "Player #{@currentPlayerIndex} skips this turn.\n"
+        	@log += "Player #{@current_player_index} skips this turn.\n"
         end
 
         def log_player_no_orders
-        @log += "Player #{@currentPlayerIndex} has no orders to play.\n"
+        	@log += "Player #{@current_player_index} has no orders to play.\n"
         end
 
         def log_no_monster
-        @log += "No monster present to attack player #{@currentPlayerIndex}.\n"
+        	@log += "No monster present to attack player #{@current_player_index}.\n"
         end
 
         def log_rounds(rounds, max)
-        @log += "Round #{rounds} of #{max} completed.\n"
+        	@log += "Round #{rounds} of #{max} completed.\n"
         end
 
         def actual_direction(preferred_direction)
-        # P3
+        	current_row=@current_player.row
+        	current_col=@current_player.col
+        	valid_moves=@labyrinth.valid_moves(current_row,current_col)
+        	output=@current_player.move(preferred_direction,valid_moves)
+        	output
         end
 
         def combat(monster)
-        # P3
+        	rounds=0
+        	winner=GameCharacter::PLAYER
+        	player_attack=@current_player.attack()
+        	lose=@monster.defend(player_attack)
+        	while((!lose)&&(@rounds<@@MAX_ROUNDS)) 
+        		winner=GameCharacter::MONSTER
+        		rounds+=1
+        		monster_attack=@monster.attack()
+        		lose=@player.defend(monster_attack)
+        		if !lose then
+        			player_attack=@player.attack()
+        			winner=GameCharacter::PLAYER
+        			lose=@monster.defend(player_attack)
+        		end
+        	end
+        	log_rounds(rounds,@@MAX_ROUNDS)
+        	winner
         end
 
         def manage_reward(winner)
-        # P3
+        	if (winner == GameCharacter::PLAYER)
+        		@current_player.receive_reward
+        		log_player_won
+        	else
+        		log_monster_won
+        	end
         end
 
         def manage_resurrection
-        # P3
+        	resurrect = Dice.resurrect_player
+        	if (resurrect)
+        		@current_player.resurrect
+        		log_resurrected
+        	else
+        		log_player_skip_turn
+        	end
         end
         
         public
@@ -71,12 +118,11 @@ module Irrgarten
                 end
             
             @monsters = Array.new
-            @labyrinth = Labyrinth.new(10,10,4,5) #POR AHORA
-            @currentPlayerIndex = Dice.who_starts(nplayers)
+            @current_player_index = Dice.who_starts(nplayers)
             @log = "Game started with #{nplayers} players.\n Labyrinth: #{@labyrinth.to_s}"
-            @currentPlayer = @players[@currentPlayerIndex]
-            #configure_labyrinth()
-            #@labyrinth.spread_players(@players)
+            @current_player = @players[@current_player_index]
+            configure_labyrinth()
+            @labyrinth.spread_players(@players)
         end
 
         def finished
@@ -84,11 +130,38 @@ module Irrgarten
         end
 
         def next_step(preferred_direction)
-            # P3
+            log = ""
+            winner = nil
+            dead = @current_player.dead
+            
+            if (!dead)
+            	direction = actual_direction(preferred_direction)
+            	if (direction != preferred_direction)
+            		log_player_no_orders
+            	end
+            	monster = @labyrinth.put_player(direction,@current_player)
+            	
+            	if (monster==nil)
+            		log_no_monster
+            	else
+            		winner=combat(monster)
+            		manage_reward(winner)
+            	end
+            else
+            	manage_resurrection
+            end
+            
+            end_game = finished
+            
+            if (!end_game)
+            	next_player
+            end
+            
+            end_game
         end
 
         def get_game_state
-        	GameState.new(@labyrinth.to_s, @players.to_s, @monsters.to_s, @currentPlayerIndex, self.finished, @log)
+        	GameState.new(@labyrinth.to_s, @players.to_s, @monsters.to_s, @current_player_index, self.finished, @log)
         end
 
     end

@@ -4,6 +4,7 @@ require_relative 'Monster'
 require_relative 'Player'
 require_relative 'Labyrinth'
 require_relative 'Game'
+require_relative 'GameState'
 
 module Irrgarten
 	class TestP2
@@ -51,6 +52,8 @@ module Irrgarten
 		def self.prueba_game()
 			g = Game.new(2)
 			puts "¿Hay ganador? #{g.finished}"
+			gs = g.get_game_state
+			puts "#{gs.labyrinth}"
 		end
 	end
 end

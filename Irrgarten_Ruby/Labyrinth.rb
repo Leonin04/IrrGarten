@@ -12,6 +12,8 @@ module Irrgarten
 		@@ROW = 0
 		@@COL = 1
 		
+		attr_accessor :labyrinth
+		
 		private
 	
 		def pos_ok ( row, col) #int, int
@@ -164,7 +166,23 @@ module Irrgarten
 		end
 		
 		def add_block (orientation, start_row, start_col, length) #Orientation, int ,int ,int
-			#P3
+			inc_row = 0
+			inc_col = 0
+			if (orientation == Orientation::VERTICAL)
+				inc_row = 1
+			else
+				inc_col = 1
+			end
+			
+			col = start_col
+			row = start_row
+			
+			while (pos_ok(row,col) && empty_pos(row,col) && length > 0)
+				@labyrinth[row][col]=@@BLOCK_CHAR
+				length -= 1
+				row += inc_row
+				col += inc_col
+			end
 		end
 		
 		def valid_moves (row,col) #int,int

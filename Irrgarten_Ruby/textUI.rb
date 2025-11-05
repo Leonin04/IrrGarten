@@ -1,6 +1,6 @@
 
 require 'io/console'
-require_relative 'directions'
+require_relative 'Irrgarten'
 
 module UI
 
@@ -19,6 +19,13 @@ module UI
     ensure
       STDIN.echo = true
       STDIN.cooked!
+DISEÑO Y DESARROLLO DE SISTEMAS DE INFORMACIÓN - 2526 (COMÚN)
+Nombre del curso DISEÑO Y DESARROLLO DE SISTEMAS DE INFORMACIÓN - 2526 (COMÚN)
+Categoría del curso (296) GRADUADO-A EN INGENIERÍA INFORMÁTICA (2010) (296)
+ECONOMETRÍA - 2526 (COMÚN)
+Nombre del curso ECONOMETRÍA - 2526 (COMÚN)
+Categoría del curso (216) GRADUADO-A EN ING.ª INFORMÁTICA-ADMINIST. Y DIRECC. EMPRESAS (2017) (216)
+
     
       return input
     end
@@ -50,7 +57,7 @@ module UI
             got_input = true
             exit(1)
           else
-            #Error
+            puts "Please choose a valid character: w,a,s,d \n" 
         end
       end
       output
