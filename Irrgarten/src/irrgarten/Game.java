@@ -43,7 +43,7 @@ public class Game {
     }
 
     private void logPlayerWon() {
-        this.log += " Player " + this.currentPlayerIndex + " has won the game!\n";
+        this.log += " Player " + this.currentPlayerIndex + " has won the battle!\n";
     }
 
     private void logMonsterWon() {

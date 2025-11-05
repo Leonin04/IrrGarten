@@ -45,6 +45,9 @@ public class TextUI {
                     direction = Directions.LEFT;
                     gotInput = true;    
                     break;
+                
+                default:
+                    System.out.print("Please choose a valid character: w,a,s,d \n");
             }
         }    
         return direction;
