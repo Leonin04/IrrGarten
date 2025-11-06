@@ -11,11 +11,6 @@ import irrgarten.Controller.Controller;
  * @author leonin04
  */
 public class TestP3 {
-    public static void estado(Game g){
-        System.out.println("¿Hay ganador? " + g.finished());
-        GameState gm = g.getGameState();
-        System.out.println(gm.getLabyrinth());
-    }
     
     public static void main(String[] args) {
         TextUI vista = new TextUI();
@@ -24,7 +19,6 @@ public class TestP3 {
         Controller controlador = new Controller (juego,vista);
 
         controlador.play();
-        estado(juego);
     }
 }
 

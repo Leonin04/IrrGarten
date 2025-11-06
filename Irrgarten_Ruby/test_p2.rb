@@ -50,7 +50,7 @@ module Irrgarten
 		end
 		
 		def self.prueba_game()
-			g = Game.new(2)
+			g = Game.new(3)
 			puts "¿Hay ganador? #{g.finished}"
 			gs = g.get_game_state
 			puts "#{gs.labyrinth}"

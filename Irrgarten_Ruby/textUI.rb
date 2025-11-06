@@ -16,16 +16,7 @@ module UI
         input << STDIN.read_nonblock(3) rescue nil
         input << STDIN.read_nonblock(2) rescue nil
       end
-    ensure
-      STDIN.echo = true
-      STDIN.cooked!
-DISEÑO Y DESARROLLO DE SISTEMAS DE INFORMACIÓN - 2526 (COMÚN)
-Nombre del curso DISEÑO Y DESARROLLO DE SISTEMAS DE INFORMACIÓN - 2526 (COMÚN)
-Categoría del curso (296) GRADUADO-A EN INGENIERÍA INFORMÁTICA (2010) (296)
-ECONOMETRÍA - 2526 (COMÚN)
-Nombre del curso ECONOMETRÍA - 2526 (COMÚN)
-Categoría del curso (216) GRADUADO-A EN ING.ª INFORMÁTICA-ADMINIST. Y DIRECC. EMPRESAS (2017) (216)
-
+    
     
       return input
     end
@@ -38,19 +29,19 @@ Categoría del curso (216) GRADUADO-A EN ING.ª INFORMÁTICA-ADMINIST. Y DIRECC.
         case c
           when "\e[A"
             puts "UP ARROW"
-            output = Irrgarten::Directions::UP
+            output = Directions::UP
             got_input = true
           when "\e[B"
             puts "DOWN ARROW"
-            output = Irrgarten::Directions::DOWN
+            output = Directions::DOWN
             got_input = true
           when "\e[C"
             puts "RIGHT ARROW"
-            output = Irrgarten::Directions::RIGHT
+            output = Directions::RIGHT
             got_input = true
           when "\e[D"
             puts "LEFT ARROW"
-            output = Irrgarten::Directions::LEFT
+            output = Directions::LEFT
             got_input = true
           when "\u0003"
             puts "CONTROL-C"
@@ -64,7 +55,20 @@ Categoría del curso (216) GRADUADO-A EN ING.ª INFORMÁTICA-ADMINIST. Y DIRECC.
     end
 
     def show_game(game_state)
+	puts game_state.players
+      	puts "\n"
+     	puts game_state.monsters
+      	puts "\n"
+      	puts game_state.labyrinth
+      	puts "\n"
 
+      	puts "Log:\n" + game_state.log + "\n"
+
+      	if (game_state.winner)
+        	puts "Player " + game_state.current_player.to_s + "\n" + "ha ganado el juego"
+      	else
+        	puts "Current player: " + game_state.current_player.to_s + "\n"
+      	end 
     end
 
   end # class   

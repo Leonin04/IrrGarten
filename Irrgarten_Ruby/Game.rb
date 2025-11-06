@@ -1,6 +1,11 @@
 #encoding:utf-8
 
 require_relative 'Irrgarten'
+require_relative 'Player'
+require_relative 'Dice'
+require_relative 'Labyrinth'
+require_relative 'Monster'
+require_relative 'GameState'
 
 module Irrgarten 
     class Game
@@ -27,6 +32,14 @@ module Irrgarten
         	@labyrinth.add_block(Orientation::VERTICAL,7,4,2);
         	@labyrinth.add_block(Orientation::VERTICAL, 3, 6, 6);
         	@labyrinth.add_block(Orientation::VERTICAL,2,8,7);
+        	
+        	for i in 0...n_monsters
+        		@monsters.push(Monster.new("monstruo #{i}",Dice.random_intelligence,Dice.random_strength))
+        	end
+        	
+        	@labyrinth.add_monster(8,1,@monsters[0])
+        	@labyrinth.add_monster(9,7,@monsters[1])
+        	@labyrinth.add_monster(2,5,@monsters[2])
         end
 
         def next_player

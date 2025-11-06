@@ -2,6 +2,7 @@
 
 require_relative 'Irrgarten'
 
+
 module Irrgarten
 	class Player
 		@@MAX_WEAPONS = 2;
@@ -27,11 +28,33 @@ module Irrgarten
 		private
 		
 		def receive_weapon (w) #weapon
-			#Practica 3
+			for i in 0...@weapons.size
+				discard = @weapons[i].discard
+				
+				if (discard)
+					@weapons.delete_at(i)
+				end
+			end
+			
+			size = @weapons.size
+			if (size < @@MAX_WEAPONS)
+				@weapons.push(w)
+			end
 		end
 		
 		def receive_shield (s) #shield
-			#Practica 3
+			for i in 0...@shields.size
+				discard = @shields[i].discard
+				
+				if (discard)
+					@shields.delete_at(i)
+				end
+			end
+			
+			size = @shields.size
+			if (size < @@MAX_SHIELDS)
+				@shields.push(s)
+			end
 		end
 		
 		def new_weapon ()
@@ -62,8 +85,25 @@ module Irrgarten
 			suma = @intelligence + sum_shields
 		end
 		
-		def manage_hit()
-			#Practica 3
+		def manage_hit(received_attack)
+			defense = defensive_energy
+			lose = false
+			
+			if (defense < received_attack)
+				get_wounded
+				inc_consecutive_hits
+			else
+				reset_hits
+			end
+			
+			if (@consecutive_hits == @@HITS2LOSE || dead)
+				reset_hits
+				lose=true
+			else
+				lose=false
+			end
+			
+			lose
 		end
 		
 		def reset_hits ()
@@ -102,7 +142,17 @@ module Irrgarten
 		end
 		
 		def move (direction, valid_moves) #Directions, Directions[]
-			#Practica 3
+			dir = direction
+			
+			size = valid_moves.size
+			
+			contained = valid_moves.include?(direction)
+			
+			if (!contained && size>0)
+				dir = valid_moves[0]
+			end
+			
+			dir
 		end	
 		
 		def attack()
@@ -114,7 +164,21 @@ module Irrgarten
 		end
 		
 		def receive_reward()
-			#Practica 3
+			w_reward = Dice.weapons_reward
+			s_reward = Dice.shields_reward
+			
+			for i in 0...w_reward
+				wnew = new_weapon
+				receive_weapon(wnew)
+			end
+			
+			for i in 0...s_reward
+				snew = new_shield
+				receive_shield(snew)
+			end
+			
+			extra_health = Dice.health_reward
+			@health += extra_health
 		end
 		
 		def to_s()

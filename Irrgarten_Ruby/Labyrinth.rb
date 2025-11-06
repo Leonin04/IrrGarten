@@ -86,13 +86,13 @@ module Irrgarten
 			fila=row
 			columna=col
 			case direction
-				when UP
+				when Directions::UP
 					fila-=1
-				when DOWN
+				when Directions::DOWN
 					fila+=1
-				when RIGHT
+				when Directions::RIGHT
 					columna+=1
-				when LEFT
+				when Directions::LEFT
 					columna-=1
 			end
 			return [fila,columna]
@@ -109,7 +109,28 @@ module Irrgarten
 		end
 		
 		def put_player_2d (old_row,old_col,row,col,player)#int,int,int,int,Player
-			#P3
+			output = nil
+			
+			if (can_step_on(row,col))
+				if (pos_ok(old_row,old_col))
+					if (@players[old_row][old_col]==player)
+						update_old_pos(old_row,old_col)
+						@players[old_row][old_col]=nil
+					end
+				end
+				
+				if(monster_pos(row,col))
+					@labyrinth[row][col]=@@COMBAT_CHAR
+					output=@monsters[row][col]
+				else
+					number = player.number
+					@labyrinth[row][col]=number
+				end
+				
+				@players[row][col]=player
+				player.set_pos(row,col)
+			end
+			output
 		end
 		
 		
@@ -131,8 +152,11 @@ module Irrgarten
 			@labyrinth[exit_row][exit_col]=@@EXIT_CHAR
 		end
 		
-		def spread_players (players) #array
-			#P3
+		def spread_players(players)
+  			players.each do |p|
+    				pos = random_empty_pos
+    				put_player_2d(-1, -1, pos[@@ROW], pos[@@COL], p)
+  			end
 		end
 		
 		def have_a_winner()
@@ -162,7 +186,11 @@ module Irrgarten
 		end
 		
 		def put_player (direction, player) #Direction, Player
-			#P3
+			old_row = player.row
+			old_col = player.col
+			new_pos = dir_2_pos(old_row,old_col,direction)
+			monster = put_player_2d(old_row,old_col,new_pos[@@ROW],new_pos[@@COL],player)
+			monster
 		end
 		
 		def add_block (orientation, start_row, start_col, length) #Orientation, int ,int ,int
@@ -186,7 +214,25 @@ module Irrgarten
 		end
 		
 		def valid_moves (row,col) #int,int
-			#P3
+			output = Array.new
+			
+			if (can_step_on(row+1,col))
+				output.push(Directions::DOWN)
+			end
+			
+			if (can_step_on(row-1,col))
+				output.push(Directions::UP)
+			end
+			
+			if (can_step_on(row,col+1))
+				output.push(Directions::RIGHT)
+			end
+			
+			if (can_step_on(row,col-1))
+				output.push(Directions::LEFT)
+			end
+			
+			output
 		end
 	end
 end
