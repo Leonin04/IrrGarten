@@ -88,13 +88,14 @@ module Irrgarten
         	winner=GameCharacter::PLAYER
         	player_attack=@current_player.attack()
         	lose=monster.defend(player_attack)
-        	while((!lose)&&(@rounds<@@MAX_ROUNDS)) 
+        	while((!lose)&&(rounds<@@MAX_ROUNDS)) 
+        		puts "El monstruo ataca"
         		winner=GameCharacter::MONSTER
         		rounds+=1
         		monster_attack=monster.attack()
-        		lose=@player.defend(monster_attack)
+        		lose=@current_player.defend(monster_attack)
         		if !lose then
-        			player_attack=@player.attack()
+        			player_attack=@current_player.attack()
         			winner=GameCharacter::PLAYER
         			lose=monster.defend(player_attack)
         		end

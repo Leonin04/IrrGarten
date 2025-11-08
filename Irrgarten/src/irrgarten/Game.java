@@ -131,7 +131,7 @@ public class Game {
         this.currentPlayer = this.players.get(this.currentPlayerIndex);
         this.configureLabyrinth();
         this.labyrinth.spreadPlayers(this.players);
-        this.log = "Game started with " + nplayers + " players.\n Labyrinth: " + this.labyrinth.toString() + "\n";
+        this.log = "Game started with " + nplayers + " players.\n Labyrinth:\n";
 
     }
 

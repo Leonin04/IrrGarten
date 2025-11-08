@@ -76,9 +76,9 @@ module Irrgarten
 			if( pos_ok(row,col) )
 				if (@labyrinth[row][col]==@@COMBAT_CHAR) 
 					@labyrinth[row][col]=@@MONSTER_CHAR
+				else 
+					@labyrinth[row][col]=@@EMPTY_CHAR
 				end
-			else 
-				@labyrinth[row][col]=@@EMPTY_CHAR
 			end
 		end
 		

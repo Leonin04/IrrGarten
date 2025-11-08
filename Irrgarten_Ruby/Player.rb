@@ -1,13 +1,15 @@
 #encoding:utf-8
 
 require_relative 'Irrgarten'
+require_relative 'Weapon'
+require_relative 'Shield'
 
 
 module Irrgarten
 	class Player
 		@@MAX_WEAPONS = 2;
 		@@MAX_SHIELDS = 3;
-		@@INITIAL_HEALTH = 10;
+		@@INITIAL_HEALTH = 1;
 		@@HITS2LOSE = 3;
 		
 		def initialize(number, intelligence, strength) #char,float,float
@@ -28,12 +30,9 @@ module Irrgarten
 		private
 		
 		def receive_weapon (w) #weapon
-			for i in 0...@weapons.size
-				discard = @weapons[i].discard
-				
-				if (discard)
-					@weapons.delete_at(i)
-				end
+			
+			@weapons.delete_if do |w| 
+				w.discard 
 			end
 			
 			size = @weapons.size
@@ -43,13 +42,9 @@ module Irrgarten
 		end
 		
 		def receive_shield (s) #shield
-			for i in 0...@shields.size
-				discard = @shields[i].discard
-				
-				if (discard)
-					@shields.delete_at(i)
-				end
-			end
+			 @shields.delete_if do |s| 
+        			s.discard
+      			end
 			
 			size = @shields.size
 			if (size < @@MAX_SHIELDS)
@@ -76,7 +71,7 @@ module Irrgarten
 		def sum_shields ()
 			suma = 0.0
 			for shield in @shields
-				suma += shield.attack
+				suma += shield.protect
 			end
 			suma
 		end
@@ -160,7 +155,7 @@ module Irrgarten
 		end
 		
 		def defend (received_attack) #float
-			#Practica 3
+			manage_hit(received_attack)
 		end
 		
 		def receive_reward()
@@ -182,7 +177,17 @@ module Irrgarten
 		end
 		
 		def to_s()
-			"Name: #{@name}, Number: #{@number}, Intelligence: #{@intelligence}, Strength: #{@strength}, Health: #{@health}, Position: (#{@row},#{@col}), ConsecutiveHits: #{@consecutive_hits} \n Armas: \n #{@weapons} \n Escudos: \n #{@shields}"
+			armas = ""
+			escudos = ""
+			
+			@weapons.each do |w|
+  				armas += w.to_s + "\n"
+			end
+			
+			@shields.each do |s|
+  				escudos += s.to_s + "\n"
+			end
+			"Name: #{@name}, Number: #{@number}, Intelligence: #{@intelligence}, Strength: #{@strength}, Health: #{@health}, Position: (#{@row},#{@col}), ConsecutiveHits: #{@consecutive_hits} \n Armas: \n #{armas} \n Escudos: \n #{escudos}"
 		end
 	end
 end

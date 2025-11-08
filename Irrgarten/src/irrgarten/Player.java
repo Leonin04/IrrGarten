@@ -197,7 +197,7 @@ public class Player {
     @Override
     public String toString(){
         return ("Name: " + name + ", Number: " + number + ", Intelligence: " + intelligence + ", Strength: " + strength + 
-                ", Health: " + health + ", Position: (" + row + "," + col + ") , ConsecutiveHits: " + consecutiveHits + " \nArmas: \n" + weapons + "\nEscudos: \n" + shields);
+                ", Health: " + health + ", Position: (" + row + "," + col + ") , ConsecutiveHits: " + consecutiveHits + " \nArmas: \n" + weapons + "\nEscudos: \n" + shields + "\n");
     }
     
     

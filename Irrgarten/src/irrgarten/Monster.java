@@ -60,6 +60,6 @@ public class Monster {
     
     @Override
     public String toString(){
-        return ("Name: " + name + ", Intelligence: " + intelligence + ", Strength: " + strength + ", Health: " + health + ", Position: (" + row + "," + col + ")");
+        return ("Name: " + name + ", Intelligence: " + intelligence + ", Strength: " + strength + ", Health: " + health + ", Position: (" + row + "," + col + ")\n");
     }
 }
