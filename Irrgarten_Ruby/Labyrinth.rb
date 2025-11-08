@@ -169,13 +169,11 @@ module Irrgarten
 		
 		def to_s()
 			salida = "Nº de filas: #{@n_rows}, Nº de columnas: #{@n_cols} \n"
-			for fila in @labyrinth
-				for i in fila
-					salida+= i
-				end 
-				salida += "\n"
-			end
-			salida
+			salida = "Laberinto: \n"
+      			@labyrinth.each do |row|
+        			salida += row.join(' ') + "\n"
+      			end
+      			salida
 		end
 		
 		def add_monster ( row, col, monster)#int,int,monster

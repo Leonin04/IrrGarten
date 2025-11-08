@@ -174,7 +174,18 @@ module Irrgarten
         end
 
         def get_game_state
-        	GameState.new(@labyrinth.to_s, @players.to_s, @monsters.to_s, @current_player_index, self.finished, @log)
+        	jugadores = ""
+        	monstruos = ""
+		@players.each do |p|
+  			jugadores += p.to_s + "\n"
+		end
+
+        	
+        	@monsters.each do |m|
+  			monstruos += m.to_s + "\n"
+		end
+        	
+        	GameState.new(@labyrinth.to_s, jugadores, monstruos, @current_player_index, self.finished, @log)
         end
 
     end

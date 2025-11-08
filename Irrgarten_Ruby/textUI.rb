@@ -48,7 +48,7 @@ module UI
             got_input = true
             exit(1)
           else
-            puts "Please choose a valid character: w,a,s,d \n" 
+            #Error 
         end
       end
       output
@@ -62,12 +62,12 @@ module UI
       	puts game_state.labyrinth
       	puts "\n"
 
-      	puts "Log:\n" + game_state.log + "\n"
+      	puts "Log:\n" + game_state.log
 
       	if (game_state.winner)
         	puts "Player " + game_state.current_player.to_s + "\n" + "ha ganado el juego"
       	else
-        	puts "Current player: " + game_state.current_player.to_s + "\n"
+        	puts "Current player: " + game_state.current_player.to_s
       	end 
     end
 
