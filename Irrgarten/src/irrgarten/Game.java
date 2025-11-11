@@ -32,6 +32,10 @@ public class Game {
             this.monsters.add(new Monster("monstruo" + i, Dice.randomIntelligence(), Dice.randomStrength()));
         }
         
+        monsters.get(0).setPos(8, 1);
+        monsters.get(1).setPos(9,7);
+        monsters.get(2).setPos(2,5);
+        
         labyrinth.addMonster(8,1, monsters.get(0));
         labyrinth.addMonster(9,7,monsters.get(1));
         labyrinth.addMonster(2,5,monsters.get(2));

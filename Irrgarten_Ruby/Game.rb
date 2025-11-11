@@ -37,6 +37,10 @@ module Irrgarten
         		@monsters.push(Monster.new("monstruo #{i}",Dice.random_intelligence,Dice.random_strength))
         	end
         	
+        	@monsters[0].set_pos(8,1)
+        	@monsters[1].set_pos(9,7)
+        	@monsters[2].set_pos(2,5)
+        	
         	@labyrinth.add_monster(8,1,@monsters[0])
         	@labyrinth.add_monster(9,7,@monsters[1])
         	@labyrinth.add_monster(2,5,@monsters[2])

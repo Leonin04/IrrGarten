@@ -59,7 +59,7 @@ public class TextUI {
         System.out.print("Log:\n" + gameState.getLog() + "\n");
         System.out.print(gameState.getLabyrinth() + "\n");
         if (gameState.getWinner()) {
-            System.out.print("Player " + gameState.getCurrentPlayer() + "ha ganado el juego, ¡Felicidades!");
+            System.out.print("Player " + gameState.getCurrentPlayer() + " ha ganado el juego, ¡Felicidades! \n");
         }else{
             System.out.print("Current player: " + gameState.getCurrentPlayer() + "\n");
         }

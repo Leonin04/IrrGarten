@@ -3,7 +3,7 @@ require_relative 'controller'
 require_relative 'textUI'
 
 module Irrgarten
-  	N_PLAYERS = 3
+  	N_PLAYERS = 1
 
 	vista = UI::TextUI.new() 
 	juego = Game.new(N_PLAYERS)
