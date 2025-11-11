@@ -168,8 +168,8 @@ module Irrgarten
 		end
 		
 		def to_s()
-			salida = "Nº de filas: #{@n_rows}, Nº de columnas: #{@n_cols} \n"
 			salida = "Laberinto: \n"
+			salida += "Nº de filas: #{@n_rows}, Nº de columnas: #{@n_cols} \n"
       			@labyrinth.each do |row|
         			salida += row.join(' ') + "\n"
       			end
