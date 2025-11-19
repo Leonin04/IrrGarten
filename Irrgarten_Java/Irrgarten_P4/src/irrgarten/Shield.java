@@ -1,30 +1,18 @@
 package irrgarten;
 
-public class Shield{
-    private float protection;
-    private int uses;
+public class Shield extends CombatElement{
     
     public Shield (float protection, int uses) {
-        this.protection = protection;
-        this.uses = uses;
+        super(protection,uses);
     }
     
     public float protect() {
-        float salida = 0.0f;
-        
-        if (uses > 0) {
-            salida = protection;
-            uses--;
-        }
-        return salida;
-    }
-
-    public boolean discard () {
-      return Dice.discardElement(this.uses);
+        return super.produceEffect();
     }
     
     @Override
     public String toString () { 
-        return "S[" + protection + "," + uses + "]";
+        String temp = super.toString();
+        return "S" + temp;
     }
 }

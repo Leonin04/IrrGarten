@@ -5,32 +5,21 @@ package irrgarten;
  *
  * @author leonin04
  */
-public class Weapon {
-    private float power;
-    private int uses;
+public class Weapon extends CombatElement{
     
     public Weapon (float power, int uses) {
-        this.power = power;
-        this.uses = uses;
+        super(power,uses);
     }
     
     public float attack () {
-        float salida = 0.0f;
-        
-        if (uses > 0) {
-            salida = power;
-            uses--;
-        }
-        return salida;
+        return super.produceEffect();
     }
-
-    public boolean discard () {
-        return Dice.discardElement(this.uses);
-    }
+    
     
     @Override
     public String toString () { 
-        return "W[" + power + "," + uses + "]";
+        String temp = super.toString();
+        return "W" + temp;
     }
     
 }
