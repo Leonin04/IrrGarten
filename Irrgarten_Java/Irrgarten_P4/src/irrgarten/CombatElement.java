@@ -8,7 +8,7 @@ package irrgarten;
  *
  * @author leonin04
  */
-public class CombatElement {
+abstract public class CombatElement {
     private float effect;
     private int uses;
     
