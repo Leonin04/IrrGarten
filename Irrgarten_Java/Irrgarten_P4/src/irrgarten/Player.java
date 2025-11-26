@@ -8,6 +8,8 @@ public class Player extends LabyrinthCharacter{
     private static final int MAX_SHIELDS = 3;
     private static final int INITIAL_HEALTH = 10;
     private static final int HITS2LOSE = 3;
+    private WeaponCardDeck weaponCardDeck;
+    private ShieldCardDeck shieldCardDeck;
     
     private char number;
     private int consecutiveHits=0;
@@ -107,6 +109,8 @@ public class Player extends LabyrinthCharacter{
            this.number=number;
            this.weapons = new ArrayList<>();
            this.shields = new ArrayList<>();
+           this.weaponCardDeck = new WeaponCardDeck();
+           this.shieldCardDeck = new ShieldCardDeck();
     }
 
     public Player(Player other){
@@ -115,6 +119,8 @@ public class Player extends LabyrinthCharacter{
         this.consecutiveHits=other.consecutiveHits;
         this.weapons = new ArrayList<>();
         this.shields = new ArrayList<>();
+        this.weaponCardDeck = new WeaponCardDeck();
+        this.shieldCardDeck = new ShieldCardDeck();
     }
     
     public void resurrect(){

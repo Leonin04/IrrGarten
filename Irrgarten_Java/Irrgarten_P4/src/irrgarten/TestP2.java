@@ -16,12 +16,12 @@ public class TestP2 {
         m.setPos(1, 1);
         System.out.println(m.toString());
         System.out.println("Matando monstruo...");
-        m.gotWounded();
+       // m.gotWounded();
         System.out.println(m.toString());
-        m.gotWounded();
-        m.gotWounded();
-        m.gotWounded();
-        m.gotWounded();
+        // m.gotWounded();
+        // m.gotWounded();
+        // m.gotWounded();
+        // m.gotWounded();
         System.out.println(m.toString());
         System.out.println("¿Muerto? " + m.dead());
     }
