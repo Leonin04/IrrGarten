@@ -1,8 +1,8 @@
 
 package irrgarten;
 
-import java.util.Random;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Dice {
     private static final int MAX_USES = 5; //Usos máximos de armas y escudos
@@ -80,7 +80,7 @@ public class Dice {
         return descartado;
     }
     
-    public Directions nextStep(Directions preference, ArrayList<Directions> validMoves, float intelligence){
+    public static Directions nextStep(Directions preference, ArrayList<Directions> validMoves, float intelligence){
         float numero = generator.nextFloat(MAX_INTELLIGENCE);
         if (numero <= intelligence){
             return preference;

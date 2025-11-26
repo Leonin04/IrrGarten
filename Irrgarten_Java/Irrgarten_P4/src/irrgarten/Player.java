@@ -3,19 +3,13 @@ package irrgarten;
 
 import java.util.ArrayList;
 
-public class Player {
+public class Player extends LabyrinthCharacter{
     private static final int MAX_WEAPONS = 2;
     private static final int MAX_SHIELDS = 3;
     private static final int INITIAL_HEALTH = 10;
     private static final int HITS2LOSE = 3;
     
-    private String name;
     private char number;
-    private float intelligence;
-    private float strength;
-    private float health;
-    private int row;
-    private int col;
     private int consecutiveHits=0;
     private ArrayList<Weapon> weapons;
     private ArrayList<Shield> shields;
@@ -59,7 +53,7 @@ public class Player {
         return new Shield(Dice.shieldPower(), Dice.usesLeft());
     }
     
-    private float sumWeapons(){
+    protected float sumWeapons(){
         float suma = 0.0f;
         for (int i=0; i< weapons.size(); i++){
             suma += weapons.get(i).attack();
@@ -67,7 +61,7 @@ public class Player {
         return suma;
     }
     
-    private float sumShields(){
+    protected float sumShields(){
         float suma = 0.0f;
         for (int i=0; i< shields.size(); i++){
             suma += shields.get(i).protect();
@@ -75,8 +69,8 @@ public class Player {
         return suma;
     }
     
-    private float defensiveEnergy(){
-        return intelligence + sumShields();
+    protected float defensiveEnergy(){
+        return super.getIntelligence() + sumShields();
     }
     
     private boolean manageHit(float receivedAttack){
@@ -84,13 +78,13 @@ public class Player {
         boolean lose=false;
         
         if(defense<receivedAttack){
-            getWounded();
+            super.getWounded();
             incConsecutiveHits();
         } else {
             resetHits();
         }
 
-        if(consecutiveHits==HITS2LOSE || (dead())) {
+        if(consecutiveHits==HITS2LOSE || (super.dead())) {
             resetHits();
             lose=true;
         } else {
@@ -103,58 +97,43 @@ public class Player {
         consecutiveHits=0;
     }
     
-    private void getWounded(){
-        health--;
-    }
-    
+   
     private void incConsecutiveHits(){
         consecutiveHits++;
     }
     
     public Player ( char number , float intelligence, float strength){
+           super("Player"+number,intelligence,strength,INITIAL_HEALTH);
            this.number=number;
-           this.intelligence=intelligence;
-           this.strength=strength;
-           this.name = "Player #"+number;
-           this.row=-1;
-           this.col=-1;
-           this.health=INITIAL_HEALTH;
            this.weapons = new ArrayList<>();
            this.shields = new ArrayList<>();
     }
+
+    public Player(Player other){
+        super(other);
+        this.number=other.number;
+        this.consecutiveHits=other.consecutiveHits;
+        this.weapons = new ArrayList<>();
+        this.shields = new ArrayList<>();
+    }
     
     public void resurrect(){
-        assert dead() : "Estas intentando resucitar sin estar muerto";
+        assert super.dead() : "Estas intentando resucitar sin estar muerto";
        
-        this.health=INITIAL_HEALTH;
+        super.setHealth(INITIAL_HEALTH);
         this.weapons.clear();
         this.shields.clear();
     }
     
-    public int getRow(){
-        return this.row;
-    }
     
-    public int getCol(){
-        return this.col;
-    }  
     
     public char getNumber(){
         return this.number;
     }
     
-    public void setPos(int row, int col){
-        this.row=row;
-        this.col= col;
-    }
+   
     
-    public boolean dead(){
-        if (this.health <=0) {
-                return true;
-        } else {
-                return false;
-        }
-    }
+    
     
     public Directions move ( Directions direction, ArrayList<Directions> validMoves){ 
         Directions dir=direction;
@@ -171,7 +150,7 @@ public class Player {
     }
     
     public float attack(){
-        return this.strength + sumWeapons();
+        return super.getStrength()+ sumWeapons();
     }
     
     public boolean defend(float receivedAttack){
@@ -191,13 +170,13 @@ public class Player {
             this.receiveShield(snew);
         }
         int extraHealth= Dice.healthReward();
-        this.health += extraHealth;
+        super.setHealth((super.getHealth()+extraHealth));
     }
     
     @Override
     public String toString(){
-        return ("Name: " + name + ", Number: " + number + ", Intelligence: " + intelligence + ", Strength: " + strength + 
-                ", Health: " + health + ", Position: (" + row + "," + col + ") , ConsecutiveHits: " + consecutiveHits + " \nArmas: \n" + weapons + "\nEscudos: \n" + shields + "\n");
+        return ("Name: " +super.toString()+ ", Number: " + number 
+        + ", ConsecutiveHits: " + consecutiveHits + " \nArmas: \n" + weapons + "\nEscudos: \n" + shields + "\n");
     }
     
     
