@@ -6,6 +6,7 @@ require_relative 'Dice'
 require_relative 'Labyrinth'
 require_relative 'Monster'
 require_relative 'GameState'
+require_relative 'FuzzyPlayer'
 
 module Irrgarten 
     class Game
@@ -121,10 +122,23 @@ module Irrgarten
         	resurrect = Dice.resurrect_player
         	if (resurrect)
         		@current_player.resurrect
+        		f =FuzzyPlayer.new()
+        		f.copiar_player(@current_player)
+        		replace_player_fuzzy(f)
         		log_resurrected
         	else
         		log_player_skip_turn
         	end
+        end
+        
+        def replace_player_fuzzy(f)
+        	for i in (0...@players.size())
+        		if (@players[i]==@current_player)
+        			@players[i]=f
+        		end
+        	end
+        	
+        	@labyrinth.set_fuzzy(f,@current_player)
         end
         
         public

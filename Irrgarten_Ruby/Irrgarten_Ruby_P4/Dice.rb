@@ -91,18 +91,14 @@ module Irrgarten
 			return descartado
 		end
 		
-		def next_step(preference,valid_moves,intelligence)
-			numero=@@generator.rand(0..@@MAX_INTELLIGENCE)
-			if (numero <= @intelligence)
+		def self.next_step(preference,valid_moves,intelligence)
+			numero=@@generator.rand(0.0..@@MAX_INTELLIGENCE)
+			if (numero <= intelligence)
 				return preference
 			else
 				movimiento=@@generator.rand(0...valid_moves.size())
 				return valid_moves[movimiento]
 			end
 		end
-		
-	
-		
-		
 	end	
 end

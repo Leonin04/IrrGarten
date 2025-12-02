@@ -232,5 +232,15 @@ module Irrgarten
 			
 			output
 		end
+		
+		def set_fuzzy(f,p)
+			for i in (0...@n_rows)
+				for j in (0...@n_cols)
+					if (@players[i][j].equal?(p))
+						@players[i][j]=f
+					end
+				end
+			end
+		end
 	end
 end

@@ -10,7 +10,7 @@ module Irrgarten
 	class Player < LabyrinthCharacter
 		@@MAX_WEAPONS = 2;
 		@@MAX_SHIELDS = 3;
-		@@INITIAL_HEALTH = 10;
+		@@INITIAL_HEALTH = 1;
 		@@HITS2LOSE = 3;
 		
 		def initialize(number, intelligence, strength) #char,float,float
@@ -85,6 +85,8 @@ module Irrgarten
 		end
 		
 		protected
+		
+		attr_reader :weapons, :shields, :consecutive_hits
 		
 		def sum_weapons ()
 			suma = 0.0

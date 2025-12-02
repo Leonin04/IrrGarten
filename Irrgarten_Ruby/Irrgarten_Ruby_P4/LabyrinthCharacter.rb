@@ -46,8 +46,8 @@ module Irrgarten
 		def defend (received_attack) #float
 		end
 		
-		def copiar_character(otro)
-			@intelligence = otro.ingelligence
+		def copiar_player(otro)
+			@intelligence = otro.intelligence
 			@strength = otro.strength
 			@name = otro.name
 			@health = otro.health
