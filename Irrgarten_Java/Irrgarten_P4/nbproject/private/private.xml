@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten_Java/Irrgarten_P4/src/irrgarten/CombatElement.java</file>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten_Java/Irrgarten_P4/src/irrgarten/Dice.java</file>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten_Java/Irrgarten_P4/src/irrgarten/Weapon.java</file>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten_Java/Irrgarten_P4/src/irrgarten/LabyrinthCharacter.java</file>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten_Java/Irrgarten_P4/src/irrgarten/Player.java</file>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten_Java/Irrgarten_P4/src/irrgarten/Labyrinth.java</file>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten_Java/Irrgarten_P4/src/irrgarten/CardDeck.java</file>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten_Java/Irrgarten_P4/src/irrgarten/ShieldCardDeck.java</file>
+            <file>file:/home/leonin04/Uni/Cuarto/PDOO/Irrgarten/Irrgarten_Java/Irrgarten_P4/src/irrgarten/WeaponCardDeck.java</file>
+        </group>
     </open-files>
 </project-private>

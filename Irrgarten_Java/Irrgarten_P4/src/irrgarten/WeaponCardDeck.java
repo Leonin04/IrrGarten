@@ -8,7 +8,7 @@ public class WeaponCardDeck extends CardDeck<Weapon>{
     @Override 
     protected void addCards(){
         for(int i=0; i<DEFAULT_DECK_SIZE; i++){
-            this.addCard(new Weapon(Dice.shieldPower(), Dice.usesLeft()));
+            this.addCard(new Weapon(Dice.weaponPower(), Dice.usesLeft()));
         }
     }
 }

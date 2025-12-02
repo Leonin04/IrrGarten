@@ -27,5 +27,13 @@ abstract class CardDeck <T extends CombatElement>{
         return carta;
     }
    
+   @Override
+   public String toString(){
+       String salida = "";
+       for (int i =0; i<cardDeck.size();i++){
+           salida += cardDeck.get(i).toString();
+       }
+       return salida;
+   }
 
 }

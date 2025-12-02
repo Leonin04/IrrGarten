@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Player extends LabyrinthCharacter{
     private static final int MAX_WEAPONS = 2;
     private static final int MAX_SHIELDS = 3;
-    private static final int INITIAL_HEALTH = 1;
+    private static final int INITIAL_HEALTH = 10;
     private static final int HITS2LOSE = 3;
     private WeaponCardDeck weaponCardDeck;
     private ShieldCardDeck shieldCardDeck;
@@ -48,11 +48,11 @@ public class Player extends LabyrinthCharacter{
     }
     
     private Weapon newWeapon(){
-        return new Weapon(Dice.weaponPower(), Dice.usesLeft());
+        return weaponCardDeck.nextCard();
     }
     
     private Shield newShield(){
-        return new Shield(Dice.shieldPower(), Dice.usesLeft());
+        return shieldCardDeck.nextCard();
     }
     
     protected float sumWeapons(){
@@ -180,7 +180,7 @@ public class Player extends LabyrinthCharacter{
     @Override
     public String toString(){
         return (super.toString()+ ", Number: " + number 
-        + ", ConsecutiveHits: " + consecutiveHits + " \nArmas: \n" + weapons + "\nEscudos: \n" + shields + "\n");
+        + ", ConsecutiveHits: " + consecutiveHits + " \nArmas: \n" + weapons + "\nEscudos: \n" + shields + "\nBaraja Armas: \n" + weaponCardDeck + "\nBaraja Escudos: \n" + shieldCardDeck + "\n");
     }
     
     
