@@ -3,29 +3,24 @@
 require_relative 'Irrgarten'
 require_relative 'Weapon'
 require_relative 'Shield'
+require_relative 'LabyrinthCharacter'
 
 
 module Irrgarten
-	class Player
+	class Player < LabyrinthCharacter
 		@@MAX_WEAPONS = 2;
 		@@MAX_SHIELDS = 3;
-		@@INITIAL_HEALTH = 1;
+		@@INITIAL_HEALTH = 10;
 		@@HITS2LOSE = 3;
 		
 		def initialize(number, intelligence, strength) #char,float,float
+			super("Player ##{@number}",intelligence,strength,@@INITIAL_HEALTH)
+			
 			@number = number
-			@intelligence = intelligence
-			@strength = strength
-			@name = "Player ##{@number}"
-			@row = -1
-			@col = -1
-			@health = @@INITIAL_HEALTH
-			@consecutive_hits = 0 #????
+			@consecutive_hits = 0 
 			@weapons = []
 			@shields = []
 		end
-		
-		attr_reader :row, :col, :number
 		
 		private
 		
@@ -60,6 +55,37 @@ module Irrgarten
 			s = Shield.new(Dice.shield_power, Dice.uses_left)
 		end
 		
+		def manage_hit(received_attack)
+			defense = defensive_energy
+			lose = false
+			
+			if (defense < received_attack)
+				got_wounded
+				inc_consecutive_hits
+			else
+				reset_hits
+			end
+			
+			if (@consecutive_hits == @@HITS2LOSE || dead)
+				reset_hits
+				lose=true
+			else
+				lose=false
+			end
+			
+			lose
+		end
+		
+		def reset_hits ()
+			@consecutive_hits = 0
+		end
+		
+		def inc_consecutive_hits ()
+			@consecutive_hits += 1
+		end
+		
+		protected
+		
 		def sum_weapons ()
 			suma = 0.0
 			for weapon in @weapons
@@ -80,59 +106,23 @@ module Irrgarten
 			suma = @intelligence + sum_shields
 		end
 		
-		def manage_hit(received_attack)
-			defense = defensive_energy
-			lose = false
-			
-			if (defense < received_attack)
-				get_wounded
-				inc_consecutive_hits
-			else
-				reset_hits
-			end
-			
-			if (@consecutive_hits == @@HITS2LOSE || dead)
-				reset_hits
-				lose=true
-			else
-				lose=false
-			end
-			
-			lose
-		end
-		
-		def reset_hits ()
-			@consecutive_hits = 0
-		end
-		
-		def get_wounded ()
-			@health-=1
-		end
-		
-		def inc_consecutive_hits ()
-			@consecutive_hits += 1
-		end
-		
 		public
+		
+		attr_reader :number
+		
+		def copiar_player(otro)
+			super(otro)
+			@number = otro.number
+			@consecutive_hits = otro.consecutive_hits
+			@weapons = otro.weapons
+			@shields = otro.shields
+		end
 		
 		def resurrect() 
 			if (dead())
 				@health = @@INITIAL_HEALTH
 				@weapons.clear()
 				@shields.clear()
-			end
-		end
-		
-		def set_pos(row, col) #int,int
-			@row = row
-			@col = col
-		end
-		
-		def dead()
-			if (@health <= 0)
-				return true
-			else
-				return false
 			end
 		end
 		
@@ -187,7 +177,7 @@ module Irrgarten
 			@shields.each do |s|
   				escudos += s.to_s + "\n"
 			end
-			"Name: #{@name}, Number: #{@number}, Intelligence: #{@intelligence}, Strength: #{@strength}, Health: #{@health}, Position: (#{@row},#{@col}), ConsecutiveHits: #{@consecutive_hits} \n Armas: \n #{armas} \n Escudos: \n #{escudos}"
+			"#{super}, Number: #{@number}, ConsecutiveHits: #{@consecutive_hits} \n Armas: \n #{armas} \n Escudos: \n #{escudos}"
 		end
 	end
 end

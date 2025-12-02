@@ -1,28 +1,15 @@
 #encoding:utf-8
 
 require_relative 'Dice'
+require_relative 'LabyrinthCharacter'
 
 module Irrgarten 
-	class Monster 
+	class Monster < LabyrinthCharacter
 		@@INITIAL_HEALTH = 5
 		
 		
 		def initialize ( name, intelligence, strength) #string,float,float
-			@name = name
-			@intelligence = intelligence
-			@strength = strength
-			@health = @@INITIAL_HEALTH
-			@col = -1
-			@row = -1
-		end
-		
-		def dead () 
-			if @health <= 0
-				return true
-			else
-				return false
-			end
-		
+			super(name,intelligence,strength,@@INITIAL_HEALTH)
 		end
 		
 		def attack()
@@ -41,27 +28,6 @@ module Irrgarten
 			end
 			
 			is_dead
-		end
-		
-		def set_pos ( row, col) # int, int
-			if row >= 0 && col >=0
-				@row=row
-				@col=col
-			else 
-				puts "El monstruo no puede estar en una posición negativa"
-			end
-			
-		end
-		
-		def got_wounded()
-			@health = @health - 1
-		
-		end
-		
-		def to_s()
-			"Name: #{@name}, Intelligence: #{@intelligence}, Strength: #{@strength}, Health: #{@health}, Position: (#{@row}, #{@col})"
-		end
-			
-		
+		end	
 	end
 end

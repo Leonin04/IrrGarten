@@ -28,5 +28,10 @@ module Irrgarten
 			end
 			salida
 		end
+		
+		def to_s()
+			salida = "[#{@effect},#{@uses}]"
+			salida
+		end
 	end
 end
