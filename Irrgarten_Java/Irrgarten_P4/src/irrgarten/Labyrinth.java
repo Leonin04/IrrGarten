@@ -238,4 +238,13 @@ public class Labyrinth {
         return nCols;
     }
     
+    public void setFuzzy(FuzzyPlayer f, Player p){
+        for (int i = 0; i<nRows;i++){
+            for (int j=0;j<nCols;j++){
+                if (players[i][j]==p){
+                    players[i][j]=f;
+                }
+            }
+        }
+    }
 }

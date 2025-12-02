@@ -114,11 +114,24 @@ public class Game {
             logMonsterWon();
         }
     }
+    
+    private void replacePlayerFuzzy(FuzzyPlayer f){
+        for (int i = 0; i<players.size();i++){
+            if (players.get(i)==currentPlayer){
+                players.set(i, f);
+            }
+        }
+        
+        labyrinth.setFuzzy(f,currentPlayer);
+    }
+    
     private void manageResurrection()       {
         boolean resurrect = Dice.resurrectPlayer();
         
         if (resurrect){
             currentPlayer.resurrect();
+            FuzzyPlayer f= new FuzzyPlayer(currentPlayer);
+            replacePlayerFuzzy(f);
             logResurrected();
         } else {
             logPlayerSkipTurn();

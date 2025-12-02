@@ -24,8 +24,8 @@ public class Monster extends LabyrinthCharacter {
         if(isDead == false){
             float defensiveEnergy = Dice.intensity(super.getIntelligence());
             if (defensiveEnergy < receivedAttack){
-                super.getWounded();;
-                isDead = this.dead();
+                super.getWounded();
+                isDead = dead();
             }
             
         }

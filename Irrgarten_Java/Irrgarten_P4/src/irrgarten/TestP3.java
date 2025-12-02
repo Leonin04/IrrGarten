@@ -14,7 +14,7 @@ public class TestP3 {
     
     public static void main(String[] args) {
         TextUI vista = new TextUI();
-        int players = 3;
+        int players = 1;
         Game juego = new Game(players);
         Controller controlador = new Controller (juego,vista);
 

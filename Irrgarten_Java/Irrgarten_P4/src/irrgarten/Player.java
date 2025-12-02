@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Player extends LabyrinthCharacter{
     private static final int MAX_WEAPONS = 2;
     private static final int MAX_SHIELDS = 3;
-    private static final int INITIAL_HEALTH = 10;
+    private static final int INITIAL_HEALTH = 1;
     private static final int HITS2LOSE = 3;
     private WeaponCardDeck weaponCardDeck;
     private ShieldCardDeck shieldCardDeck;
@@ -117,10 +117,10 @@ public class Player extends LabyrinthCharacter{
         super(other);
         this.number=other.number;
         this.consecutiveHits=other.consecutiveHits;
-        this.weapons = new ArrayList<>();
-        this.shields = new ArrayList<>();
-        this.weaponCardDeck = new WeaponCardDeck();
-        this.shieldCardDeck = new ShieldCardDeck();
+        this.weapons = other.weapons;
+        this.shields = other.shields;
+        this.weaponCardDeck = other.weaponCardDeck;
+        this.shieldCardDeck =other.shieldCardDeck;
     }
     
     public void resurrect(){
@@ -137,10 +137,6 @@ public class Player extends LabyrinthCharacter{
         return this.number;
     }
     
-   
-    
-    
-    
     public Directions move ( Directions direction, ArrayList<Directions> validMoves){ 
         Directions dir=direction;
         
@@ -155,10 +151,12 @@ public class Player extends LabyrinthCharacter{
           return dir;
     }
     
+    @Override
     public float attack(){
         return super.getStrength()+ sumWeapons();
     }
     
+    @Override
     public boolean defend(float receivedAttack){
         return manageHit(receivedAttack);
     }
@@ -181,7 +179,7 @@ public class Player extends LabyrinthCharacter{
     
     @Override
     public String toString(){
-        return ("Name: " +super.toString()+ ", Number: " + number 
+        return (super.toString()+ ", Number: " + number 
         + ", ConsecutiveHits: " + consecutiveHits + " \nArmas: \n" + weapons + "\nEscudos: \n" + shields + "\n");
     }
     

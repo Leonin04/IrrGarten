@@ -7,7 +7,7 @@ public class FuzzyPlayer extends Player{
     
 
     public FuzzyPlayer(Player other){
-        super(other.getNumber(),other.getIntelligence(),other.getStrength());
+        super(other);
     }
 
     @Override
@@ -29,7 +29,8 @@ public class FuzzyPlayer extends Player{
 
     @Override
     public String toString(){
-        return super.toString();
+        String cadena =  super.toString();
+        return "Fuzzy " + cadena;
     }
 
 
