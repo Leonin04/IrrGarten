@@ -63,7 +63,7 @@ public class Dice {
     }
     
     public static int usesLeft(){
-        return generator.nextInt(MAX_USES+1);
+        return generator.nextInt(MAX_USES)+1;
     }
     
     public static float intensity(float competence){

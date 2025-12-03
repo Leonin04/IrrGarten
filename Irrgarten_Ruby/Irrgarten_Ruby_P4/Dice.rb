@@ -72,7 +72,7 @@ module Irrgarten
 		
 		
 		def self.uses_left()
-			@@generator.rand(0..@@MAX_USES)
+			@@generator.rand(0..@@MAX_USES)+1
 		end
 		
 		
