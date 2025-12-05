@@ -10,7 +10,7 @@ require_relative 'Player'
 module Irrgarten
 	class FuzzyPlayer < Player
 		def initialize()
-		
+			
 		end
 		
 		public

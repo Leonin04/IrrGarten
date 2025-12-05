@@ -41,9 +41,11 @@ module Irrgarten
 		end
 		
 		def attack()
+			raise NOT_IMPLEMENTED_ERROR
 		end
 		
 		def defend (received_attack) #float
+			raise NOT_IMPLEMENTED_ERROR
 		end
 		
 		def copiar_player(otro)
