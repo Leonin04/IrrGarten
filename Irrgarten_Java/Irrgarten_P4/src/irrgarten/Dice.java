@@ -85,7 +85,6 @@ public class Dice {
         if (numero <= intelligence){
             return preference;
         } else {
-            System.out.println("-------" +validMoves.size()+"-------");
             int movimiento = generator.nextInt(validMoves.size());
             return validMoves.get(movimiento);
         }
