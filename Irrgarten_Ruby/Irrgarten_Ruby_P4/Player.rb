@@ -14,7 +14,7 @@ module Irrgarten
 		@@HITS2LOSE = 3;
 		
 		def initialize(number, intelligence, strength) #char,float,float
-			super("Player ##{@number}",intelligence,strength,@@INITIAL_HEALTH)
+			super("Player ##{number}",intelligence,strength,@@INITIAL_HEALTH)
 			
 			@number = number
 			@consecutive_hits = 0 
